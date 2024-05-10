@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conditional</title>
+</head>
+<body>
+  <h1>Berlatih Conditional HTML</h1>
+  <h3>Masukkan Nama dan Peran Anda</h3>
+
+  <br>
+
+  <div class="form">
+    <input type="text" id="nama" placeholder="isi nama disini">
+    <input type="text" id="peran" placeholder="isi peran disini">
+    <button onclick="mulaiPermainan()">
+        Mulai Permainan
+    </button>
+  </div>
+
+  <br>
+
+  <h1>
+      Jawaban Dari Console Game
+  </h1>
+
+  <script>
+    function mulaiPermainan() {
+      var nama = document.getElementById('nama').value.trim();
+      var peran = document.getElementById('peran').value.trim();
+      
+      // Validasi form
+      if (nama === '' || peran === '') {
+        alert('Nama dan peran harus diisi!');
+        return;
+      }
+
+      var jawaban = document.createElement('div');
+      jawaban.textContent = 'Nama: ' + nama + ', Peran: ' + peran;
+      document.body.appendChild(jawaban);
+    }
+  </script>
+</body>
+</html>
