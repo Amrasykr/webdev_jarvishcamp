@@ -1,45 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Conditional</title>
-</head>
-<body>
-  <h1>Berlatih Conditional HTML</h1>
-  <h3>Masukkan Nama dan Peran Anda</h3>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conditional</title>
+  </head>
+  <body>
+    <h1>Berlatih Conditional HTML</h1>
+    <h3>Masukkan Nama dan Peran Anda</h3>
 
-  <br>
+    <br />
 
-  <div class="form">
-    <input type="text" id="nama" placeholder="isi nama disini">
-    <input type="text" id="peran" placeholder="isi peran disini">
-    <button onclick="mulaiPermainan()">
-        Mulai Permainan
-    </button>
-  </div>
+    <div class="form">
+      <input type="text" id="nama" placeholder="isi nama disini" />
+      <select id="peran">
+        <option value="">Pilih peran...</option>
+        <option value="werewolf">Werewolf</option>
+        <option value="penyihir">Penyihir</option>
+        <option value="rakjel">Rakjel</option>
+      </select>
+      <button onclick="mulaiPermainan()">Mulai Permainan</button>
+    </div>
 
-  <br>
+    <br />
 
-  <h1>
-      Jawaban Dari Console Game
-  </h1>
+    <h1>Jawaban Dari Console Game</h1>
 
-  <script>
-    function mulaiPermainan() {
-      var nama = document.getElementById('nama').value.trim();
-      var peran = document.getElementById('peran').value.trim();
-      
-      // Validasi form
-      if (nama === '' || peran === '') {
-        alert('Nama dan peran harus diisi!');
-        return;
+    <script>
+      function mulaiPermainan() {
+        var nama = document.getElementById("nama").value.trim();
+        var peran = document.getElementById("peran").value.trim();
+
+        // Validasi form
+        if (nama === "") {
+          var jawaban = document.createElement("div");
+          jawaban.textContent = "Nama harus diisi!";
+          document.body.appendChild(jawaban);
+        } else if (peran === "") {
+          var jawaban = document.createElement("div");
+          jawaban.textContent = `Halo ${nama}, Pilih peranmu untuk memulai game!`;
+          document.body.appendChild(jawaban);
+        } else if (peran === "werewolf") {
+          var greeting = document.createElement("div");
+          greeting.textContent = `Selamat datang di Dunia Werewolf, ${nama}`;
+          document.body.appendChild(greeting);
+
+          var jawaban = document.createElement("div");
+          jawaban.textContent = `Halo Werewolf ${nama}, kamu dapat memilih siapa yang akan kamu makan malam ini!`;
+          document.body.appendChild(jawaban);
+        } else if (peran === "penyihir") {
+          var greeting = document.createElement("div");
+          greeting.textContent = `Selamat datang di Dunia Werewolf, ${nama}`;
+          document.body.appendChild(greeting);
+
+          var jawaban = document.createElement("div");
+          jawaban.textContent = `Halo Penyihir ${nama}, kamu dapat melihat siapa yang menjadi werewolf!`;
+          document.body.appendChild(jawaban);
+        } else if (peran === "rakjel") {
+          var greeting = document.createElement("div");
+          greeting.textContent = `Selamat datang di Dunia Werewolf, ${nama}`;
+          document.body.appendChild(greeting);
+
+          var jawaban = document.createElement("div");
+          jawaban.textContent = `Halo Rakjel ${nama}, kamu adalah Rakyat Jelata.`;
+          document.body.appendChild(jawaban);
+        }
       }
-
-      var jawaban = document.createElement('div');
-      jawaban.textContent = 'Nama: ' + nama + ', Peran: ' + peran;
-      document.body.appendChild(jawaban);
-    }
-  </script>
-</body>
+    </script>
+  </body>
 </html>
