@@ -3,7 +3,7 @@
 @section('title', 'Tasks List')
 
 @section('content')
-<div class="container-fluid px-4 mt-5">
+<div class="container-fluid px-4 mt-5 ">
     <h1 class="text-center">
         Tasks List
     </h1>
@@ -13,25 +13,34 @@
         <div class="card w-25">
             <div class="card-header d-flex justify-content-between">
                 <div class="d-flex flex-row">
-                    <h6>{{$task['title']}}</h6>
+                    <h6>{{$task->name}}</h6>
                 </div>
             </div>
-
             <div class="card-body">
-              <h5 class="card-title">{{$task['task']}}</h5>
-              <p class="card-text">{{$task['description']}}</p>
+              <div class="d-flex justify-content-between ">
+                <h6>
+                    {{ $task->status->name }}
+                </h6>
+                <h6>
+                    {{ $task->category->name }}
+                </h6>
+              </div>
+              <p class="card-text mt-3">{{$task['description']}}</p>
+            
             <p>
-                @if ($task['status'] == 'completed')
-                <span class="badge rounded-pill bg-success">{{ $task['status'] }}</span>
-            @else
-                <span class="badge rounded-pill bg-danger">{{ $task['status'] }}</span>
-            @endif
-            </p>
-            <p>
-                {{ \Carbon\Carbon::parse($task['due_date'])->diffForHumans() }}
+                {{ \Carbon\Carbon::parse($task->deadline)->diffForHumans() }}
 
             </p>
-            <a href="{{ url('/tasks/' . $task['id']) }}" class="btn btn-primary">Detail</a>
+
+            <div class="d-flex gap-2">
+                <a href="{{ url('/tasks/' . $task->id) }}" class="btn btn-primary">Detail</a>
+                <a href="{{ url('/tasks/edit/' . $task->id . '') }}" class="btn btn-warning">Edit</a>
+                <form action="{{ url('/tasks/delete/' . $task->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this task?')">Delete</button>
+                </form>
+            </div>
             </div>
         </div>
         @endforeach

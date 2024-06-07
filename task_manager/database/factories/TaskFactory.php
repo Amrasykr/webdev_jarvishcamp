@@ -17,11 +17,11 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->word(),
-            'task' => $this->faker->sentence(),
-            'description' => $this->faker->paragraph(),
-            'due_date' => $this->faker->date(),
-            'status' => $this->faker->randomElement(['Incomplete', 'Complete']),
+            'name' => $this->faker->name,
+            'deadline' => $this->faker->date(),
+            'description' => $this->faker->text,
+            'status_id' => $this->faker->numberBetween(1, 3),
+            'category_id' => $this->faker->numberBetween(1, 3),
         ];
     }
 }
